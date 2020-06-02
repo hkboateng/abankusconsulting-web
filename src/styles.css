@@ -1,1 +1,4 @@
-/* You can add global styles to this file, and also import other style files */
+@import url("assets/css/font-awesome.css");
+@import url("assets/css/nucleo-icons.css");
+@import url("assets/css/nucleo-svg.css");
+@import url("assets/css/argon-design-system.css");
