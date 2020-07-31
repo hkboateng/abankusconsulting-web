@@ -1,0 +1,10 @@
+version: '3.3'
+
+services:
+  abankusconsultingweb:
+    container_name: abankusconsult
+    build: .
+    environment:
+      NODE_ENV: production
+    ports:
+      - 80:80

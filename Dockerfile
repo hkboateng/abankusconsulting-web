@@ -12,14 +12,27 @@ WORKDIR /usr/src/app
 
 
 # install and cache app dependencies
-COPY package.json ./
+COPY package.json  package-lock.json ./
+
 RUN npm install
 
 
 # add app
-COPY . .
-RUN npm run build
+COPY .  .
+RUN npm run build -- --deploy-url=/ --prod
 
 FROM nginx
+#!/bin/sh
+
+COPY nginx.conf /etc/nginx/nginx.conf
+
+## Remove default nginx index page
+RUN rm -rf /usr/share/nginx/html/*
+
 COPY --from=build /usr/src/app/dist/abankusconsultingapp /usr/share/nginx/html
 
+# expose port 80
+EXPOSE 80
+
+# run nginx
+CMD ["nginx", "-g", "daemon off;"]
